@@ -66,40 +66,71 @@
             return parseInt(getComputedStyle(obj,false)[arr]);
         }
     }
+
     var share =get("content");
     share.addEventListener("mouseover", function () {
-        moving();
+        moving(5,0);
     },true);
-    var timer=null;
-    function moving(){
-        clearInterval(timer1);
-        clearInterval(timer);
-        timer=setInterval(function (){
-            var left1=getstyle(share,"left");
-            if(left1<0){
-                left1+=10;
-            }
-            share.style.left=left1+"px";
-
-        },17)
-    }
-
     share.addEventListener("mouseout", function () {
-        fade();
+        moving(-5,-150);
     },true);
-    var timer1=null;
-    function fade(){
-        clearInterval(timer);
-        clearInterval(timer1);
-        timer1=setInterval(function (){
-            var left1=getstyle(share,"left");
-            if(left1>-150){
-                left1-=10;
-            }
-            share.style.left=left1+"px";
 
+    function moving(speed,ter){
+        clearInterval(share.timer);
+        share.timer=null;
+        share.timer=setInterval(function() {
+            var left1 = getstyle(share, "left");
+            if (left1 < ter){
+                if (left1 < ter) {
+                    left1 += speed;
+                }
+            } else {
+                if (left1 > ter) {
+                    left1 += speed;
+                }
+            }
+            share.style.left = left1 + "px";
         },17)
     }
+
+
+
+
+
+//    var share =get("content");
+//    share.addEventListener("mouseover", function () {
+//        moving();
+//    },true);
+//    var timer=null;
+//    function moving(){
+//        clearInterval(timer1);
+//        clearInterval(timer);
+//        timer=setInterval(function (){
+//            var left1=getstyle(share,"left");
+//            if(left1<0){
+//                left1+=10;
+//            }
+//            share.style.left=left1+"px";
+//
+//        },17)
+//    }
+//
+//    share.addEventListener("mouseout", function () {
+//        fade();
+//    },true);
+//    var timer1=null;
+//    function fade(){
+//        clearInterval(timer);
+//        clearInterval(timer1);
+//        timer1=setInterval(function (){
+//            var left1=getstyle(share,"left");
+//            if(left1>-150){
+//                left1-=10;
+//            }
+//            share.style.left=left1+"px";
+//
+//        },17)
+//    }
 
 
 
